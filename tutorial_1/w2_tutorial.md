@@ -18,7 +18,7 @@
 ## 2 Design the Algorithm:
 
 ### a) Diagram
-![Flowchart Diagram](diagram.png)
+![Flowchart Diagram](diagram.png.png)
 
 ### b) Truth Table
 
