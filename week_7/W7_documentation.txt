@@ -1,0 +1,30 @@
+WEEK 7 - TUTORIAL 7: FOODEXPRESS ORDERING SYSTEM DEBUGGING & TESTING
+====================================================================
+
+1 BUGS IDENTIFIED IN THE ORIGINAL CODE
+---------------------------------------
+Bug 1 (Unhandled Non-Numeric Input Crash in main.py):
+- In the original main.py, `float(input("Price (RM): "))` and `int(input("Quantity: "))` had no `try-except` block. Entering text or symbols caused the program to crash with a `ValueError`.
+
+Bug 2 (No Input Validation for Negative/Zero Values in food_order.py):
+- `calculate_total(price, quantity)` did not check whether `price <= 0` or `quantity <= 0`. Invalid orders (e.g., negative prices or zero quantities) were accepted and multiplied instead of returning `"invalid price"` or `"invalid quantity"`.
+
+Bug 3 (Formatting Crash on Error Strings in main.py):
+- `print(f"Total Payment = RM {total:.2f}")` assumes `total` is always a number. When `calculate_total` returns an error string like `"invalid price"`, applying `:.2f` raises a `ValueError: Unknown format code 'f' for object of type 'str'`.
+
+Bug 4 (Function Naming Mismatch in test_food_order.py):
+- The template in `food_order.py` defines `calculate_total`, whereas `test_food_order.py` calls `food_order(10, 2)`.
+
+
+2 FIXES IMPLEMENTED
+--------------------
+- Added input validation inside `calculate_total(price, quantity)` in `food_order.py` to return `"invalid price"` when price is not a positive number and `"invalid quantity"` when quantity is not a positive integer.
+- Added a `try-except ValueError` block in `main.py` to catch non-numeric inputs gracefully without crashing.
+- Checked `isinstance(total, str)` in `main.py` before formatting with `:.2f` so error messages display cleanly.
+- Imported `calculate_total as food_order` in `test_food_order.py` and wrote unit tests covering valid totals (20, 30, 100, 10) and invalid inputs (`"invalid price"`, `"invalid quantity"`).
+
+
+3 PYTEST EXECUTION SUMMARY
+---------------------------
+Command run: `pytest`
+Result: All 6 test functions in `test_food_order.py` passed successfully (100%).
