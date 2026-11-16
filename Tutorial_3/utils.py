@@ -1,0 +1,18 @@
+# Function for calculating the total bill
+def calculate_total(coffee, tea, sandwich):
+    coffee_price = 8.50
+    tea_price = 6.00
+    sandwich_price = 12.00
+    total = (coffee * coffee_price) + (tea * tea_price) + (sandwich * sandwich_price)
+    return total
+
+
+# Function for printing the receipt
+def print_receipt(customer_name, coffee, tea, sandwich, total):
+    print("\n===== RECEIPT =====")
+    print(f"Customer : {customer_name}")
+    print(f"Coffee   : {coffee}")
+    print(f"Tea      : {tea}")
+    print(f"Sandwich : {sandwich}")
+    print(f"\nTotal = RM {total:.2f}")
+    print("===================")
